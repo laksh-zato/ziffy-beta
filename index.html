@@ -1769,7 +1769,7 @@
 // ═══════════════════════════════════════════════════════════
 //  CONSTANTS
 // ═══════════════════════════════════════════════════════════
-const AGENT_BASE = 'https://roxanna-enarched-nonsyntactically.ngrok-free.dev';
+const AGENT_BASE = 'https://roxanna-enarched-nonsyntactically.ngrok-free.dev/';
 const ZATO_BASE  = 'https://nz-dev.api.zatoplatform.com';
 
 // RSA public key — matches the key used in the main frontend (VITE_RSA_PUBLIC_KEY)
@@ -1943,7 +1943,7 @@ async function zatoApi(path, opts = {}) {
 }
 
 async function agentApi(path, opts = {}) {
-  const hdrs = { 'Content-Type': 'application/json', ...opts.headers };
+  const hdrs = { 'Content-Type': 'application/json','ngrok-skip-browser-warning': 'true', ...opts.headers };
   if (S.authToken) hdrs['Authorization'] = `Bearer ${S.authToken}`;
   const res = await fetch(`${AGENT_BASE}${path}`, { ...opts, headers: hdrs });
   const data = await res.json();
